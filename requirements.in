@@ -1,0 +1,4 @@
+argon2-cffi
+django
+django-countries
+graphene-django
