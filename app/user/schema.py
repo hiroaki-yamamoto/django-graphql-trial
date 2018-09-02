@@ -12,6 +12,7 @@ class BasicUserInfoType(DjangoObjectType):
     class Meta(object):
         """Metadata."""
         model = get_user_model()
+        exclude_fields = ('password', 'email', 'id')
 
 
 class AdvancedUserInfoType(DjangoObjectType):
