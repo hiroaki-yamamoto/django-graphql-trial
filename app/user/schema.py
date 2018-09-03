@@ -1,5 +1,5 @@
 # from django.conf import settings
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate, login, logout
 import graphene
 from graphene_django.types import DjangoObjectType
 
@@ -31,6 +31,36 @@ class AdvancedUserInfoType(DjangoObjectType):
         model = UserDetail
 
 
+class Login(graphene.Mutation):
+    """Login mutation."""
+
+    class Arguments(object):
+        """Arguments."""
+        username = graphene.String(required=True)
+        password = graphene.String(required=True)
+
+    ok = graphene.Boolean()
+
+    def mutate(self, info, username, password):
+        """Mutation."""
+        user = authenticate(username=username, password=password)
+        if user is None:
+            return Login(ok=False)
+        login(info.context, user)
+        return Login(ok=True)
+
+
+class Logout(graphene.Mutation):
+    """Logout mutation."""
+
+    ok = graphene.Boolean()
+
+    def mutate(self, info):
+        """Mutate."""
+        logout(info.context)
+        return Logout(ok=True)
+
+
 class PublicQuery(object):
     """Query."""
     public_users = graphene.List(
@@ -44,6 +74,16 @@ class PublicQuery(object):
         return get_user_model().objects.filter(
             details__is_public=True
         ).all()[offset:limit]
+
+
+class PublicMutations(object):
+    """Public mutations."""
+    login = Login.Field()
+
+
+class PrivateMutations(object):
+    """Private Mutations."""
+    logout = Logout.Field()
 
 
 class PrivateQuery(object):
