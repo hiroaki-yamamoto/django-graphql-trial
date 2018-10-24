@@ -15,7 +15,7 @@ graphql-core==2.1         # via graphene, graphene-django, graphql-relay
 graphql-relay==0.4.5      # via graphene
 iso8601==0.1.12           # via graphene-django
 promise==2.2.1              # via graphene, graphene-django, graphql-core, graphql-relay
-pycparser==2.18           # via cffi
+pycparser==2.19           # via cffi
 pytz==2018.6              # via django
 rx==1.6.1                 # via graphql-core
 singledispatch==3.4.0.3   # via graphene-django
