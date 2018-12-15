@@ -19,5 +19,5 @@ pycparser==2.19           # via cffi
 pytz==2018.7              # via django
 rx==1.6.1                 # via graphql-core
 singledispatch==3.4.0.3   # via graphene-django
-six==1.11.0               # via argon2-cffi, graphene, graphene-django, graphql-core, graphql-relay, promise, singledispatch
+six==1.12.0               # via argon2-cffi, graphene, graphene-django, graphql-core, graphql-relay, promise, singledispatch
 typing==3.6.6             # via promise
